@@ -1,30 +1,27 @@
 #include <stdio.h>
 
-int main()
-{
+int main() {
     char str[100];
-    int freq[26] = {0};
-    int i = 0;
+    int i, j = 0;
 
     printf("Enter a string: ");
     fgets(str, sizeof(str), stdin);
 
-    while (str[i] != '\0') 
-    {
-        if (str[i] >= 'a' && str[i] <= 'z') 
-        {
-            freq[str[i] - 'a']++;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] != 'a' && str[i] != 'e' &&
+            str[i] != 'i' && str[i] != 'o' &&
+            str[i] != 'u' && str[i] != 'A' &&
+            str[i] != 'E' && str[i] != 'I' &&
+            str[i] != 'O' && str[i] != 'U') {
 
-            if (freq[str[i] - 'a'] == 2) 
-            {
-                printf("First repeating lowercase alphabet = %c\n", str[i]);
-                return 0;
-            }
+            str[j] = str[i];
+            j++;
         }
-        i++;
     }
 
-    printf("No repeating lowercase alphabet found.\n");
+    str[j] = '\0';
+
+    printf("String after removing vowels: %s", str);
 
     return 0;
 }
